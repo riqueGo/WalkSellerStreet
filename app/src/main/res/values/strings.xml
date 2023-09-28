@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WalkSellerStreet</string>
+    <string name="sharing_location_started">Click the button to stop sharing your location</string>
+    <string name="sharing_location_stopped">Click the button to start sharing your location</string>
 </resources>
