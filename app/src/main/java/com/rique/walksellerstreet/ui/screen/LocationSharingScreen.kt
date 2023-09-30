@@ -2,7 +2,6 @@ package com.rique.walksellerstreet.ui.screen
 
 import android.Manifest
 import android.content.pm.PackageManager
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
@@ -25,13 +24,14 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import com.rique.walksellerstreet.R
-import com.rique.walksellerstreet.ui.viewModel.LocationSharingViewModel
+import com.rique.walksellerstreet.di.LocalComponentActivity
+import com.rique.walksellerstreet.di.LocalLocationSharingViewModel
 
 @Composable
-fun LocationSharingScreen(
-    activity: ComponentActivity,
-    viewModel: LocationSharingViewModel
-) {
+fun LocationSharingScreen() {
+    val activity = LocalComponentActivity.current
+    val viewModel = LocalLocationSharingViewModel.current
+
     val primaryColor = MaterialTheme.colorScheme.primary
     val secondaryColor = MaterialTheme.colorScheme.secondary
     val tertiaryColor = MaterialTheme.colorScheme.tertiary

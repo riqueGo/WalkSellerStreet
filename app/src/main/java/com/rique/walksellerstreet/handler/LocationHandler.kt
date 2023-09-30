@@ -1,16 +1,11 @@
 package com.rique.walksellerstreet.handler
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.pm.PackageManager
 import android.location.Location
-import androidx.activity.ComponentActivity
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
 
-class LocationHandler(private val context: Context) {
+class LocationHandler(context: Context) {
     private val fusedLocationProviderClient: FusedLocationProviderClient =
         LocationServices.getFusedLocationProviderClient(context)
 
@@ -19,7 +14,7 @@ class LocationHandler(private val context: Context) {
 
         val locationRequest = LocationRequest.Builder(10000)
             .setMinUpdateIntervalMillis(5000)
-            .setMinUpdateDistanceMeters(10f)
+            .setMinUpdateDistanceMeters(3f)
             .setPriority(Priority.PRIORITY_HIGH_ACCURACY)
             .build()
 
