@@ -54,8 +54,8 @@ fun LocationSharingScreen() {
     ) {
         val (message, button) = createRefs()
 
-        Text(text = if (isSharingLocation) stringResource(R.string.sharing_location_started)
-        else stringResource(R.string.sharing_location_stopped),
+        Text(text = if (isSharingLocation) stringResource(R.string.sharing_location_stopped)
+        else stringResource(R.string.sharing_location_started),
             color = tertiaryColor,
             fontSize = 20.sp,
             textAlign = TextAlign.Center,
@@ -102,7 +102,7 @@ fun LocationSharingScreen() {
                 end.linkTo(parent.end)
             }) {
             Text(
-                text = if (isSharingLocation) "Stop" else "Start", fontSize = 20.sp
+                text = if (isSharingLocation) stringResource(R.string.stop) else stringResource(R.string.start), fontSize = 20.sp
             )
         }
     }

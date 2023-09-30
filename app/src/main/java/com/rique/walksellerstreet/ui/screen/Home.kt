@@ -26,9 +26,7 @@ fun Home() {
     ModalDrawer(
         drawerState = drawerState,
         drawerContent = {
-            DownloadScreen (onCloseDrawer = {
-                scope.launch { drawerState.close() }
-            })
+            DownloadScreen()
         },
         content = {
             Column {

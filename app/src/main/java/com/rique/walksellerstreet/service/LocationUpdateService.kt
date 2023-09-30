@@ -27,8 +27,8 @@ class LocationUpdateService : Service() {
 
     override fun onDestroy() {
         Log.i("Service", "OnDestroy")
-        super.onDestroy()
         sellerRepository.updateIsActiveSeller("943eae44-b39f-4dd7-b631-4425d99a5457", false)
+        super.onDestroy()
     }
 
     override fun onBind(p0: Intent?): IBinder? {

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">WalkSellerStreet</string>
-    <string name="sharing_location_started">Click the button to stop sharing your location</string>
-    <string name="sharing_location_stopped">Click the button to start sharing your location</string>
+    <string name="sharing_location_started">Clique no botão e comece a compartilhar sua localização</string>
+    <string name="sharing_location_stopped">Clique no botão e pare de compartilhar sua localização</string>
+    <string name="stop">Parar</string>
+    <string name="start">Começar</string>
 </resources>
