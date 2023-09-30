@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -31,6 +32,7 @@ import com.rique.walksellerstreet.di.LocalLocationSharingViewModel
 fun LocationSharingScreen() {
     val activity = LocalComponentActivity.current
     val viewModel = LocalLocationSharingViewModel.current
+    val context = LocalContext.current
 
     val primaryColor = MaterialTheme.colorScheme.primary
     val secondaryColor = MaterialTheme.colorScheme.secondary
@@ -43,7 +45,7 @@ fun LocationSharingScreen() {
     ) { isGranted ->
         if (isGranted) {
             // Permission granted, update the state and start location sharing
-            viewModel.toggleLocationSharing()
+            viewModel.toggleLocationSharing(context)
         }
     }
 
@@ -75,7 +77,7 @@ fun LocationSharingScreen() {
 
             if (isPermissionGranted) {
                 // Permission is already granted, update the state and start location sharing
-                viewModel.toggleLocationSharing()
+                viewModel.toggleLocationSharing(context)
             } else {
                 // Request permission using the launcher
                 launcher.launch(permission)

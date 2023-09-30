@@ -1,5 +1,6 @@
 package com.rique.walksellerstreet.ui.screen
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.DrawerValue
@@ -15,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
+@SuppressLint("PrivateResource")
 @Composable
 fun Home() {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)

@@ -24,7 +24,7 @@ fun DownloadScreen(
             .background(MaterialTheme.colorScheme.background)
             .padding(16.dp)
     ) {
-        Text(text = "Drawer Content")
+        Text(text = "Baixe o app do Cliente no QR Code abaixo")
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = {

@@ -1,20 +1,15 @@
 package com.rique.walksellerstreet.ui.viewModel
 
+import android.content.Context
+import android.content.Intent
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.rique.walksellerstreet.handler.LocationHandler
-import com.rique.walksellerstreet.repository.ISellerRepository
+import com.rique.walksellerstreet.service.LocationUpdateService
 import com.rique.walksellerstreet.ui.state.LocationSharingState
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 
-@HiltViewModel
-class LocationSharingViewModel @Inject constructor(
-    private val locationRepository: ISellerRepository,
-    private val locationHandler: LocationHandler,
-) : ViewModel() {
+class LocationSharingViewModel : ViewModel() {
     private val _state: MutableState<LocationSharingState> = mutableStateOf(
         LocationSharingState()
     )
@@ -26,19 +21,13 @@ class LocationSharingViewModel @Inject constructor(
         _state.value = _state.value.copy(isSharingLocation = isSharingLocation)
     }
 
-    fun toggleLocationSharing() {
+    fun toggleLocationSharing(context: Context) {
         if(_state.value.isSharingLocation){
-            turnOffSharingLocation()
+            setIsSharingLocation(false)
+            context.stopService(Intent(context, LocationUpdateService::class.java))
         } else {
-            locationHandler.startLocationTracking { location ->
-                locationRepository.updateSellerLocation("943eae44-b39f-4dd7-b631-4425d99a5457", location.latitude, location.longitude)
-            }
             setIsSharingLocation(true)
+            context.startService(Intent(context, LocationUpdateService::class.java))
         }
-    }
-
-    fun turnOffSharingLocation() {
-        setIsSharingLocation(false)
-        locationRepository.updateIsActiveSeller("943eae44-b39f-4dd7-b631-4425d99a5457", false)
     }
 }
