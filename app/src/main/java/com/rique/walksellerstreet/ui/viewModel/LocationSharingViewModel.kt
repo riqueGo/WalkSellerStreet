@@ -5,9 +5,11 @@ import android.content.Intent
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import com.rique.walksellerstreet.service.LocationUpdateService
 import com.rique.walksellerstreet.ui.state.LocationSharingState
+
 
 class LocationSharingViewModel : ViewModel() {
     private val _state: MutableState<LocationSharingState> = mutableStateOf(
@@ -17,17 +19,20 @@ class LocationSharingViewModel : ViewModel() {
     val state: State<LocationSharingState>
         get() = _state
 
-    private fun setIsSharingLocation(isSharingLocation: Boolean) {
+    fun setIsSharingLocation(isSharingLocation: Boolean) {
         _state.value = _state.value.copy(isSharingLocation = isSharingLocation)
     }
 
     fun toggleLocationSharing(context: Context) {
         if(_state.value.isSharingLocation){
             setIsSharingLocation(false)
-            context.stopService(Intent(context, LocationUpdateService::class.java))
+            val serviceIntent = Intent(context, LocationUpdateService::class.java)
+            context.stopService(serviceIntent)
         } else {
             setIsSharingLocation(true)
-            context.startService(Intent(context, LocationUpdateService::class.java))
+            val serviceIntent = Intent(context, LocationUpdateService::class.java)
+            serviceIntent.putExtra("inputExtra", "Estamos atualizando sua localização")
+            ContextCompat.startForegroundService(context, serviceIntent)
         }
     }
 }

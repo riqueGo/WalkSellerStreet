@@ -1,6 +1,7 @@
 package com.rique.walksellerstreet
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -21,7 +22,18 @@ class MainActivity : ComponentActivity() {
     private val locationSharingViewModel: LocationSharingViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.i("MainActivity", "onCreate")
         super.onCreate(savedInstanceState)
+
+        if (intent?.action == "NOTIFICATION_CLICKED") {
+            val action = intent.getStringExtra("ACTION")
+            val isSharingLocation = intent.getBooleanExtra("IS_SHARING_LOCATION", false)
+
+            if (action == "RESUME_PREVIOUS_STATE") {
+                locationSharingViewModel.setIsSharingLocation(isSharingLocation)
+            }
+        }
+
         setContent {
             WalkSellerStreetTheme {
                 // A surface container using the 'background' color from the theme
