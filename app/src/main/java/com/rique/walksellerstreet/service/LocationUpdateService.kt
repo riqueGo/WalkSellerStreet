@@ -4,6 +4,8 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_MUTABLE
+import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
@@ -40,7 +42,7 @@ class LocationUpdateService : Service() {
 
         val pendingIntent = PendingIntent.getActivity(
             applicationContext,
-            0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT
+            0, notificationIntent, FLAG_MUTABLE or FLAG_UPDATE_CURRENT
         )
 
         val notification: Notification = NotificationCompat.Builder(this, CHANNEL_ID)
